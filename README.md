@@ -1,4 +1,4 @@
-LojaItens
+# LojaItens
 Recuperação Senac-RS
 
 Selecione um ITEM da lista e aperte em comprar para atualizar as informações de saldo/dinheiro                    
