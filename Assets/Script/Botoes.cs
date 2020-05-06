@@ -59,7 +59,7 @@ public class Botoes : MonoBehaviour
     public void BotaoArmaArco()
     {
         Arma arma = new Arma("Arco Elfico Triplo", 400f, Tipo.equipamento);
-        arma.Descricao = "Essa arco pode lançar três flechas ao mesmo tempo, regem as lendas de que foi criado pelo primeiro elfo da história.";
+        arma.Descricao = "Esse arco pode lançar três flechas ao mesmo tempo, regem as lendas de que foi criado pelo primeiro elfo da história.";
         Jogador.Singleton.itemAtual = arma;
         botaoAtual = botaoArmaArco;
         uiScript.AtualizarPainel();
