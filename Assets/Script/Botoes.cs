@@ -5,14 +5,15 @@ using UnityEngine.UI;
 
 public class Botoes : MonoBehaviour
 {
-    private Button botaoAtual;
-    public Button botaoArmaduraMalha;
-    public Button botaoArmaduraBronze;
-    public Button botaoArmaEspada;
-    public Button botaoArmaArco;
+    private Button botaoAtual;          //Button que armazena as informções do botão clicado (caso e item seja do Tipo equipamento)
+    public Button botaoArmaduraMalha;   //Button que tem os componentes do botão da armadura de malha
+    public Button botaoArmaduraBronze;  //Button que tem os componentes do botão da armadura de bronze
+    public Button botaoArmaEspada;      //Button que tem os componentes do botão da arma espada
+    public Button botaoArmaArco;        //Button que tem os componentes do botão da arma arco
 
-    public UIScript uiScript;
+    public UIScript uiScript;           //UIScript que referencia o UIScript
 
+    //As funções a seguir criam a função de cada botão do jogo criando seus respectivos Itens e os armazenda no itemAtual de Jogador, logo em seguida atualiza o painel de informações
     public void BotaoPocaoVida()
     {
         Pocao pocao = new Pocao("Poção de Vida", 50f, Tipo.consumivel);
@@ -28,7 +29,10 @@ public class Botoes : MonoBehaviour
         Jogador.Singleton.itemAtual = pocao;
         uiScript.AtualizarPainel();
     }
+    //-----------------------------
 
+    //As funções a seguir criam a função de cada botão do jogo, criando seus respectivos Itens e os armazenando
+    //no itemAtual de Jogador, logo em seguida iguala o botao atual ao seu respectivo botão e atualiza o painel de informações
     public void BotaoArmaduraMalha()
     {
         Armadura armadura = new Armadura("Armadura de Cota de Malha", 150f, Tipo.equipamento);
@@ -64,22 +68,23 @@ public class Botoes : MonoBehaviour
         botaoAtual = botaoArmaArco;
         uiScript.AtualizarPainel();
     }
+    //-----------------------------
 
     public void BotaoComprar()
     {
-        if (Jogador.Singleton.dinheiro >= Jogador.Singleton.itemAtual.GetValor)
+        if (Jogador.Singleton.dinheiro >= Jogador.Singleton.itemAtual.GetValor)                         //Verifica se o dinheiro do jogador é maior ou igual ao preço do item atual
         {
-            Jogador.Singleton.dinheiro -= Jogador.Singleton.itemAtual.GetValor;
-            if(Jogador.Singleton.itemAtual.GetTipo == Tipo.equipamento)
+            Jogador.Singleton.dinheiro -= Jogador.Singleton.itemAtual.GetValor;                         //Subtrai o dinheiro do jogador pelo preço do item atual
+            if(Jogador.Singleton.itemAtual.GetTipo == Tipo.equipamento)                                 //Se o tipo do item for equipamento, a interação do botao atual é desligada
             {
                 botaoAtual.interactable = false;
             }
         }
         else
         {
-            Jogador.Singleton.itemAtual.Descricao = "Você não tem dinheiro para comprar este item.";
+            Jogador.Singleton.itemAtual.Descricao = "Você não tem dinheiro para comprar este item.";    //Se não a descrição do item muda para "Você não tem dinheiro para comprar este item."
         }
 
-        uiScript.AtualizarPainel();
+        uiScript.AtualizarPainel();                                                                     //Chama a função atualizar painel
     }
 }
